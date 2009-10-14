@@ -1,0 +1,48 @@
+=== dmenu ===
+
+  dmenu @4.0 (x11)
+  Variants:             m0rk (alternative colours with rxvtc as console)
+
+  Description:          dynamic menu is a generic menu for X, originally designed for dwm. It manages huge
+                        amounts (up to 10.000 and more) of user defined menu items efficiently.
+  Homepage:             http://tools.suckless.org/dmenu
+
+  Library Dependencies: xorg-libXinerama
+  Platforms:            darwin
+  License:              unknown
+  Maintainers:          nomaintainer@macports.org
+
+
+=== dwm ===
+
+  dwm @5.7.2 (x11, x11-wm)
+  Variants:             m0rk (alternative colours)
+
+  Description:          dwm is a dynamic window manager for X
+  Homepage:             http://dwm.suckless.org/
+
+  Library Dependencies: xorg-libXinerama
+  Platforms:            darwin
+  License:              unknown
+  Maintainers:          nomaintainer@macports.org
+
+
+=== rxvt-unicode ===
+
+  rxvt-unicode @9.06, Revision 2 (x11)
+  Variants:             xterm_colors_256 (256 colors patch via xterm)
+
+  Description:          rxvt-unicode is a clone of the well-known terminal emulator rxvt. Some of it's main
+                        features over rxvt are use of UCS-2 or UCS-4 to store text internally,
+                        locale-correct in- and output, stability, completely flicker-free display, support
+                        for Xft and core fonts in any combination, etc.
+  Homepage:             http://software.schmorp.de/pkg/rxvt-unicode.html
+
+  Build Dependencies:   pkgconfig
+  Library Dependencies: Xft2, expat, ncursesw, perl5, zlib
+  Platforms:            darwin
+  License:              unknown
+  Maintainers:          nomaintainer@macports.org
+  
+  it is the same port as on MacPorts, just with working "copy and paste" on
+  Mac OSX (https://trac.macports.org/ticket/17434)
