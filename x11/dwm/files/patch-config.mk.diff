@@ -1,0 +1,27 @@
+--- config.mk	2009-09-27 11:32:37.000000000 +0200
++++ config.mk.orig	2009-09-28 21:19:41.000000000 +0200
+@@ -4,19 +4,19 @@ VERSION = 5.7.1
+ # Customize below to fit your system
+ 
+ # paths
+-PREFIX = /usr/local
++PREFIX = /opt/local
+ MANPREFIX = ${PREFIX}/share/man
+ 
+-X11INC = /usr/X11R6/include
+-X11LIB = /usr/X11R6/lib
++X11INC = /opt/local/include/X11
++X11LIB = /opt/local/lib
+ 
+ # Xinerama, un-comment if you want it
+ XINERAMALIBS = -L${X11LIB} -lXinerama
+ XINERAMAFLAGS = -DXINERAMA
+ 
+ # includes and libs
+-INCS = -I. -I/usr/include -I${X11INC}
+-LIBS = -L/usr/lib -lc -L${X11LIB} -lX11 ${XINERAMALIBS}
++INCS = -I. -I/opt/local/include -I${X11INC}
++LIBS = -L/opt/local/lib -lc -L${X11LIB} -lX11 ${XINERAMALIBS}
+ 
+ # flags
+ CPPFLAGS = -DVERSION=\"${VERSION}\" ${XINERAMAFLAGS}

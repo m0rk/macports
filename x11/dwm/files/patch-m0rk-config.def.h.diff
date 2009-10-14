@@ -1,0 +1,43 @@
+--- config.def.h.orig	2009-10-06 21:05:08.000000000 +0200
++++ config.def.h	2009-10-06 21:06:38.000000000 +0200
+@@ -1,13 +1,13 @@
+ /* See LICENSE file for copyright and license details. */
+ 
+ /* appearance */
+-static const char font[]            = "-*-*-medium-*-*-*-14-*-*-*-*-*-*-*";
+-static const char normbordercolor[] = "#cccccc";
+-static const char normbgcolor[]     = "#cccccc";
+-static const char normfgcolor[]     = "#000000";
+-static const char selbordercolor[]  = "#0066ff";
+-static const char selbgcolor[]      = "#0066ff";
+-static const char selfgcolor[]      = "#ffffff";
++static const char font[]            = "-*-terminus-*-*-*-*-*-*-*-*-*-*-*-*";
++static const char normbordercolor[] = "#333333";
++static const char normbgcolor[]     = "#333333";
++static const char normfgcolor[]     = "#999999";
++static const char selbordercolor[]  = "#4C4C4C";
++static const char selbgcolor[]      = "#333333";
++static const char selfgcolor[]      = "#FFFFFF";
+ static const unsigned int borderpx  = 1;        /* border pixel of windows */
+ static const unsigned int snap      = 32;       /* snap pixel */
+ static const Bool showbar           = True;     /* False means no bar */
+@@ -28,8 +28,8 @@ static const Bool resizehints = True; /*
+ 
+ static const Layout layouts[] = {
+ 	/* symbol     arrange function */
+-	{ "[]=",      tile },    /* first entry is default */
+-	{ "><>",      NULL },    /* no layout function means floating behavior */
++	{ "[T]",      tile },    /* first entry is default */
++	{ "[M]",      NULL },    /* no layout function means floating behavior */
+ 	{ "[M]",      monocle },
+ };
+ 
+@@ -46,7 +46,7 @@ static const Layout layouts[] = {
+ 
+ /* commands */
+ static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+-static const char *termcmd[]  = { "uxterm", NULL };
++static const char *termcmd[]  = { "urxvtc", NULL };
+ 
+ static Key keys[] = {
+ 	/* modifier                     key        function        argument */

@@ -1,0 +1,79 @@
+--- ./src/perl/macosx-clipboard.orig	2007-11-12 15:41:42.000000000 +0100
++++ ./src/perl/macosx-clipboard	2009-10-06 20:22:49.000000000 +0200
+@@ -23,53 +23,38 @@
+ # along with this program; if not, write to the Free Software
+ # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ # ----------------------------------------------------------------------
++#
+ 
+-# Usage:
++# Modification by Matias Larre-Borges <larre-borges.com:devel>:
++# To allow this module to work with the rxvt-unicode from macports,
++# I had to avoid using Foundation.pm
++
++# Usage: put in your .Xdefaults the following lines
+ 
+ # URxvt.perl-ext-common: macosx-clipboard
+ # URxvt.keysym.M-c: perl:macosx-clipboard:copy
+ # URxvt.keysym.M-v: perl:macosx-clipboard:paste
+ 
+ use Fcntl ();
+-use Foundation;
+ use locale;
+ use utf8;
+ 
+-our($appkit, $pasteboard);
+-
+-$appkit = NSBundle->alloc->init->initWithPath_('/System/Library/Frameworks/AppKit.framework');
+-$appkit->load if $appkit;
+-
+-if ($appkit->isLoaded) {
+-   no strict 'refs';
+-   for my $class (qw(NSPasteboard)) {
+-      @{$class . '::ISA'} = 'PerlObjCBridge';
+-   }
+-} else {
+-   undef $appkit;
+-}
+-
+-$pasteboard = NSPasteboard->generalPasteboard;
+-
+ sub copy {
+    my ($self) = @_;
+ 
+-   $pasteboard->declareTypes_owner_(NSArray->arrayWithObject_('NSStringPboardType'), undef);
+-   $pasteboard->setString_forType_($self->selection, 'NSStringPboardType');
++   open(CLIPBOARD, "| pbcopy ");
++   print CLIPBOARD $self->selection;
++   close CLIPBOARD;
+    ()
+ }
+ 
+ sub paste {
+    my ($self) = @_;
+-   my ($type, $str);
++   my ($str);
+ 
+-   $type = $pasteboard->availableTypeFromArray_(NSArray->arrayWithObject_('NSStringPboardType'));
+-   if ($type->isEqual_('NSStringPboardType')){
+-      $str = $pasteboard->stringForType_($type)->UTF8String;
+-      $str =~ tr/\n/\r/;
+-      utf8::decode($str);
+-      $self->tt_write($self->locale_encode($str));
+-   }
++   $str = `pbpaste`;
++   $str =~ tr/\n/\r/;
++   $self->tt_write($self->locale_encode($str));
+    ()
+ }
+ 
+@@ -83,6 +68,6 @@ sub on_user_command {
+    if ($cmd eq "macosx-clipboard:paste") {
+       $self->paste;
+    }
+-   ()
+-}
+ 
++   ()
++}
+\ No newline at end of file

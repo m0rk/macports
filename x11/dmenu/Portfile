@@ -1,0 +1,28 @@
+# $Id$
+
+PortSystem          1.0
+
+name                dmenu
+version             4.0
+categories          x11
+maintainers         nomaintainer
+description         dynamic menu
+long_description    dynamic menu is a generic menu for X, originally designed for dwm. It manages huge amounts (up to 10.000 and more) of user defined menu items efficiently.
+homepage            http://tools.suckless.org/dmenu
+platforms           darwin
+master_sites        http://dl.suckless.org/tools/
+
+checksums           md5     66e761a653930cc8a21614ba9fedf903 \
+                    sha1    6fb1ff6e414d5ef33d2f627b0ec563eaac19fbd8 \
+                    rmd160  9292c516397b578a753b1ba6a87ce68135a465b6
+
+depends_lib         port:xorg-libXinerama
+
+patchfiles          patch-config.mk.diff
+
+variant m0rk description {alternative colours} {
+  patchfiles-append patch-m0rk-config.h.diff
+}
+
+use_configure       no
+universal_variant   no
